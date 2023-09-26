@@ -138,9 +138,7 @@ sup {
 /**
  * Remove the border on images inside links in IE 10.
  */
-img {
-  border-style: none;
-}
+
 
 /* Forms
    ========================================================================== */
@@ -420,7 +418,7 @@ button {
 }
 
 a {
-  color: #1b89bc;
+  color: #47753b;
   text-decoration: none;
 }
 
