@@ -1,26 +1,47 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-      const response = await fetch('/api/users/profile');
-      const userData = await response.json();
+const newFormHandler = async (event) => {
+  event.preventDefault();
 
-      if (response.ok) {
-          // Display the username
-          const nameElement = document.querySelector('.col-md-6 h2');
-          nameElement.textContent = `Welcome, ${userData.name}!`;
+  const name = document.querySelector('#project-name').value.trim();
+  const needed_funding = document.querySelector('#project-funding').value.trim();
+  const description = document.querySelector('#project-desc').value.trim();
 
-          // Display the highest scores
-          const highScoresList = document.querySelector('.col-md-6 ul');
-          highScoresList.innerHTML = '';
+  if (name && needed_funding && description) {
+    const response = await fetch(`/api/projects`, {
+      method: 'POST',
+      body: JSON.stringify({ name, needed_funding, description }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-          userData.highScores.forEach((score) => {
-              const scoreItem = document.createElement('li');
-              scoreItem.textContent = `Score: ${score.score}`;
-              highScoresList.appendChild(scoreItem);
-          });
-      } else {
-          console.error('Error:', userData.message);
-      }
-  } catch (error) {
-      console.error('An error occurred:', error);
+    if (response.ok) {
+      document.location.replace('/profile');
+    } else {
+      alert('Failed to create project');
+    }
   }
-});
+};
+
+const delButtonHandler = async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+
+    const response = await fetch(`/api/projects/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      document.location.replace('/profile');
+    } else {
+      alert('Failed to delete project');
+    }
+  }
+};
+
+document
+  .querySelector('.new-project-form')
+  .addEventListener('submit', newFormHandler);
+
+document
+  .querySelector('.project-list')
+  .addEventListener('click', delButtonHandler);

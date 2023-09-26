@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lonely Zombie Game</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lonely Zombie</title>
-  <link rel="stylesheet" href="/css/jass.css">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-  <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Lonely Zombie</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-   <main>
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
-
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-<script src="/js/gamelogic.js" type="module"></script>
-</body>
-
+        user-select: none;  
+        touch-action: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+      }
+      canvas {
+        border: 0.1px solid grey;
+      }
+      a {
+        color: rgb(161, 157, 157);
+        font-size: 3.5em; /* Adjust the font size as needed */
+      }
+      .links {
+        margin-bottom: 20px;
+        font-weight: normal;
+      }
+      .separator {
+        color: grey;
+      }
+    </style>
+    <script src="js/index.js" defer type="module"></script>
+  </head>
+  <body>
+    <div class="links">
+      <a href=""
+        >Lonely Zombie</a
+      >&nbsp;&nbsp;<span class="separator">|</span>&nbsp;&nbsp;<a
+        href=""
+        >Login</a
+      >
+    </div>
+    <canvas id="game"></canvas>
+  </body>
 </html>
