@@ -33,7 +33,7 @@
       }
       a {
         color: rgb(161, 157, 157);
-        font-size: 3.5em; /* Adjust the font size as needed */
+        font-size: 4.5em; /* Adjust the font size as needed */
       }
       .links {
         margin-bottom: 20px;
@@ -47,13 +47,66 @@
   </head>
   <body>
     <div class="links">
-      <a href=""
-        >Lonely Zombie</a
-      >&nbsp;&nbsp;<span class="separator">|</span>&nbsp;&nbsp;<a
-        href=""
-        >Login</a
-      >
+      <a href="">Lonely Zombie</a
+      >&nbsp;&nbsp;<span class="separator">|</span>&nbsp;&nbsp;
+       
+       <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <a href="/profile">Profile</a> |
+        <a href="/logout">Logout</a>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+      
+      {{!-- <a href="">Login</a> --}}
     </div>
-    <canvas id="game"></canvas>
+
+    <div id="game-instructions">
+      
+      <p>Welcome to the Lonely Zombie game! In this game, you play as a zombie trying to avoid humans.</p>
+      <p>Your goal is to avoid the humans and stay lonely as long as possible.</p>
+      <p>follow the instructions below to jump and avoid the incoming obstacles.</p>
+      <ul>
+        <li><strong>GOOD LUCK!</strong> </li>
+        <!-- Add more instructions as needed -->
+      </ul>
+      
+    </div>
+
+    <!-- Uncomment the canvas element when you want to display the game -->
+    {{!-- <canvas id="game"></canvas> --}}
+
+    <style>
+      #game-instructions {
+        text-align: center;
+        margin-top: 20px;
+        color: rgba(128, 128, 128, 0.8); /* Clear gray color */
+      }
+      
+      #game-instructions p {
+        font-size: 20px; /* Bigger font size */
+        margin-bottom: 10px;
+      }
+      #game-instructions ul {
+        font-size: 20px; /* Bigger font size */
+        list-style-type: none;
+      }
+      #game-instructions li {
+        margin-bottom: 15px;
+        margin-top:20px;
+        font-size: 30px;
+      }
+    </style>
+    
+  <div>
+      <!-- Render the sub layout -->
+      {{{ body }}}
+    </main>
+    <footer>
+      
+    </footer>
+  </div>
+
+<canvas id="game"></canvas>
   </body>
 </html>
