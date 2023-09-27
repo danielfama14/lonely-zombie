@@ -42,6 +42,16 @@
       .separator {
         color: grey;
       }
+
+      #logout {
+        color: rgb(161, 157, 157);
+        font-size: 4.5em;
+        font-family: inherit; /* Use the same font as the parent element (links) */
+        background: none;
+        border: none;
+        text-decoration: underline;
+        cursor: pointer;
+      }
     </style>
     <script src="js/index.js" defer type="module"></script>
   </head>
@@ -53,7 +63,8 @@
        <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/profile">Profile</a> |
-        <a href="/logout">Logout</a>
+        <button class="no-button" id="logout">Logout</button>
+        {{!-- <a href="/logout">Logout</a> --}}
         {{else}}
         <a href="/login">Login</a>
         {{/if}}
@@ -67,7 +78,7 @@
       <p>Your goal is to avoid the humans and stay lonely as long as possible.</p>
       <p>follow the instructions below to jump and avoid the incoming obstacles.</p>
       <ul>
-        <li><strong>GOOD LUCK!</strong> </li>
+        <li><strong>GOOD LUCK!!</strong> </li>
         <!-- Add more instructions as needed -->
       </ul>
       
@@ -105,6 +116,13 @@
     <footer>
       
     </footer>
+
+  </div>
+
+  <!-- Render script for logged in users only -->
+  <div>{{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
   </div>
 
 <canvas id="game"></canvas>
