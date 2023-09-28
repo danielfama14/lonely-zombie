@@ -8,6 +8,7 @@ class User extends Model {
   }
 }
 
+
 User.init(
   {
     id: {
@@ -34,6 +35,10 @@ User.init(
       validate: {
         len: [8],
       },
+    },
+    high_score: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
   },
   {
