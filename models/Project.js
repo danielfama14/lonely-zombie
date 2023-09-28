@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class HighScore extends Model {}
+class Project extends Model {}
 
-HighScore.init(
+Project.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,23 +11,26 @@ HighScore.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    score: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    description: {
+      type: DataTypes.STRING,
     },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    needed_funding: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user', // Make sure this matches the actual User model name
+        model: 'user',
         key: 'id',
       },
     },
@@ -37,8 +40,8 @@ HighScore.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'high_score', // Adjusted model name to "high_score"
+    modelName: 'project',
   }
 );
 
-module.exports = HighScore;
+module.exports = Project;
