@@ -5,7 +5,7 @@ const logout = async () => {
   });
 
   if (response.ok) {
-    document.location.replace('/test/gamepage');
+    document.location.replace('/gamepage');
   } else {
     alert(response.statusText);
   }
