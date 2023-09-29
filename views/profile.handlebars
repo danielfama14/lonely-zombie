@@ -1,50 +1,33 @@
-
-
 <div class="row">
-  <div class="col-auto">
+  {{!-- <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
   </div>
 </div>
 
 <div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Project:</h3>
 
-    <form class="form new-project-form">
-      <div class="form-group">
-        <label for="project-name">project name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
-      </div>
-      <div class="form-group">
-        <label for="project-funding">needed funding ($):</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
-      </div>
-      <div class="form-group">
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
+  {{#if highestScores.length}} <!-- Check if highestScores array is not empty -->
+    <div class="row mt-4 highestScores-list">
+      <h3>Highest Scores</h3> <!-- Adjust the tag accordingly -->
 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
-
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
+      {{#each highestScores as |high_score|}}
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a href="/users/{{high_score.id}}">{{high_score.name}}</a></h4>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-danger" data-id="{{high_score.id}}">DELETE</button>
+        </div>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
+      {{/each}}
     </div>
-    {{/each}}
-  </div>
-  {{/if}}
+  {{else}}
+    <!-- Display a message if there are no highest scores -->
+    <p>No highest scores available.</p>
+  {{/if}} --}}
+  <p>hello</p>
+
 </div>
 
 <script src="js/profile.js"></script>
+

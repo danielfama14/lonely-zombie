@@ -125,6 +125,7 @@ function showGameOver() {
   const x = canvas.width / 4.5;
   const y = canvas.height / 2;
   ctx.fillText("GAME OVER", x, y);
+  console.log(score)
 }
 
 function setupGameReset() {
@@ -198,7 +199,7 @@ function gameLoop(currentTime) {
   player.draw();
   score.draw();
 
-  if (gameOver) {
+  if (gameOver) { 
     showGameOver();
   }
 
