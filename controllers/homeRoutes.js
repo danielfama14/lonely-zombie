@@ -55,7 +55,7 @@ router.get('/profile', async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
+      attributes: ['name', 'high_score'],
     });
     console.log(userData)
 
@@ -68,9 +68,9 @@ router.get('/profile', async (req, res) => {
 
     const highestScoreArray = highestScores.map(user => user.get({ plain: true }));
     // console.log(highestScore);
-    // const user = userData.get({ plain: true });
     // console.log(user);
     res.render('profile', {
+      user: userData.get({ plain: true }),
       // ...user,
       highestScore: highestScoreArray,
       logged_in: true

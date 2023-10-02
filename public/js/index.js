@@ -126,6 +126,11 @@ function showGameOver() {
   const y = canvas.height / 2;
   ctx.fillText("GAME OVER", x, y);
   console.log(score)
+
+  // Display the current score and high scores
+  const currentScore = Math.floor(score.score);
+  ctx.fillText(`Your Score: ${currentScore}`, x, y + 55 * scaleRatio);
+  
 }
 
 function setupGameReset() {
@@ -201,6 +206,7 @@ function gameLoop(currentTime) {
 
   if (gameOver) { 
     showGameOver();
+    score.setHighScore();
   }
 
   if (waitingToStart) {
